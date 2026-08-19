@@ -24,7 +24,7 @@
     <costStuffCount>25</costStuffCount>
     <comps>
       <li Class="CompProperties_Power">
-        <compClass>CompPowerTrader</compClass>
+        <compClass>RemoteDoors.CompPowerTraderNoPowerOverlay</compClass>
         <basePowerConsumption>50</basePowerConsumption>
       </li>
       <li Class="CompProperties_Breakdownable"/>
