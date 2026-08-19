@@ -1,6 +1,6 @@
 ---
 name: build-mod
-description: Build the Remote Doors RimWorld mod assembly using Docker. Use whenever the C# under Source/ changes, when asked to build/compile/rebuild the mod, or before testing in game. Also covers cleaning build output and installing the mod into RimWorld.
+description: Build the Remote Doors RimWorld mod assembly using Docker, and decompile vanilla RimWorld classes to check their real source. Use whenever the C# under Source/ changes, when asked to build/compile/rebuild the mod, before testing in game, or when you need to know what a vanilla type actually does - accessibility, signatures, or behaviour.
 ---
 
 # Building Remote Doors
@@ -56,6 +56,39 @@ next game start with no copy step:
 ```bash
 ln -s "$PWD" "$HOME/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/RemoteDoors"
 ```
+
+## Decompiling vanilla RimWorld code
+
+Never guess at what a vanilla type does, and never infer accessibility from symbol names -
+`Building_Door.DoorOpen` reads as public in a string dump but is `protected`, which decided
+the whole architecture of this mod. Decompile and read the real thing.
+
+The `decompile/` folder beside this file is a small console app wrapping
+`ICSharpCode.Decompiler`. Run it against the installed game assembly:
+
+```bash
+MANAGED="$HOME/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Contents/Resources/Data/Managed"
+docker run --rm \
+  -v "$MANAGED":/rw:ro \
+  -v "$PWD/.claude/skills/build-mod/decompile":/decompile \
+  -v rimworld-nuget:/root/.nuget/packages \
+  -w /decompile \
+  mcr.microsoft.com/dotnet/sdk:8.0 \
+  dotnet run -c Release -- /rw/Assembly-CSharp.dll RimWorld.Building_Door
+```
+
+Swap the last argument for any fully-qualified type. Pipe to a file and grep it - these
+types run to hundreds of lines.
+
+Notes:
+- **Namespaces are not guessable.** `Building_Door` is in `RimWorld`, not `Verse`, despite
+  most `Building_*` types living in `Verse`. A wrong namespace gives
+  "Could not find type definition ... in type system"; try the other one.
+- **Do not use `ilspycmd`.** The NuGet id is shadowed by an unrelated squatted 1.0.0 package
+  with no `DotnetToolSettings.xml`, so `dotnet tool install -g ilspycmd` fails at any version.
+  The library approach above avoids it entirely.
+- Decompile the **game's** `Assembly-CSharp.dll`, not `Krafs.Rimworld.Ref` - the NuGet
+  package ships reference assemblies with method bodies stripped.
 
 ## Reading failures
 

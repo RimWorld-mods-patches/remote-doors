@@ -13,7 +13,7 @@ namespace RemoteDoors
     /// including waiting for a pawn to clear the doorway first.
     ///
     /// With no power nothing here runs, so an unpowered remote door behaves as an ordinary
-    /// door that colonists open by hand.
+    /// door that colonists open by hand, including vanilla's hold-open toggle.
     /// </summary>
     public class Building_RemoteDoor : Building_Door
     {
@@ -51,6 +51,12 @@ namespace RemoteDoors
 
             if (powered)
             {
+                // While there is power the switch is authoritative. Vanilla's hold-open latch
+                // is a veto on closing that outranks everything else, so a leftover one would
+                // silently keep the door open the next time power is cut - clearing it here
+                // means hold-open only ever applies to an unpowered door.
+                holdOpenInt = false;
+
                 // Renew the close budget with more time than elapses before the next renewal,
                 // so the countdown never reaches zero and FreePassage stays true.
                 DoorOpen(RefreshInterval * 3);
