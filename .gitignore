@@ -1,0 +1,7 @@
+# Build artifacts
+bin/
+obj/
+1.6/Assemblies/
+
+*.user
+.DS_Store

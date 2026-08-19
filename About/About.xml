@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <packageId>romangr.remotedoors</packageId>
+  <name>Remote Doors</name>
+  <author>roman_gr</author>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Adds the remote door: a powered door that is held open for as long as it receives electricity, and closes itself the moment power is cut.
+
+Wire a set of remote doors to their own conduit branch behind a power switch and you can open or seal a whole route by flicking that one switch. Handy for opening a path into a killbox only when you want it open.
+
+With no power the remote door behaves exactly like an ordinary door - colonists can still open it by hand, just more slowly. Power loss, a solar flare or a breakdown all leave it closed rather than stuck open.
+
+Unlocked by the autodoor research.</description>
+</ModMetaData>

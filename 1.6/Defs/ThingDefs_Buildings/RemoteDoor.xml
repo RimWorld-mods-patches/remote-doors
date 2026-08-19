@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="DoorBase">
+    <defName>RemoteDoor</defName>
+    <thingClass>RemoteDoors.Building_RemoteDoor</thingClass>
+    <label>remote door</label>
+    <description>A powered door wired to open on command. While it receives electricity the door stays open and nobody is slowed passing through it. Cut the power and it closes on its own.\n\nRun a group of them off their own conduit branch behind a power switch to open or seal an entire route at once.\n\nWithout power it still works as an ordinary door - it can be opened by hand, just slowly.</description>
+    <statBases>
+      <WorkToBuild>1400</WorkToBuild>
+    </statBases>
+    <graphicData>
+      <texPath>Things/Building/Door/Autodoor_Mover</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <enabled>false</enabled>
+      </damageData>
+    </graphicData>
+    <uiIconPath>Things/Building/Door/Autodoor_MenuIcon</uiIconPath>
+    <costList>
+      <Steel>60</Steel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+    </costList>
+    <costStuffCount>25</costStuffCount>
+    <comps>
+      <li Class="CompProperties_Power">
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>50</basePowerConsumption>
+      </li>
+      <li Class="CompProperties_Breakdownable"/>
+      <li Class="CompProperties_Styleable"/>
+    </comps>
+    <researchPrerequisites>
+      <li>Autodoors</li>
+    </researchPrerequisites>
+    <constructionSkillPrerequisite>8</constructionSkillPrerequisite>
+    <building>
+      <isStuffableAirtight>true</isStuffableAirtight>
+    </building>
+  </ThingDef>
+
+</Defs>
