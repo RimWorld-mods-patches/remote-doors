@@ -24,8 +24,13 @@
     <costStuffCount>25</costStuffCount>
     <comps>
       <li Class="CompProperties_Power">
-        <compClass>RemoteDoors.CompPowerTraderNoPowerOverlay</compClass>
+        <compClass>CompPowerTrader</compClass>
         <basePowerConsumption>50</basePowerConsumption>
+        <!-- Unpowered is this door's normal resting state, not a fault, so suppress
+             the red "needs power" overlay. Must stay a plain CompPowerTrader:
+             ThingDef.ConnectToPower tests compClass == typeof(CompPowerTrader) by
+             exact type, so a subclass never connects to a power net. -->
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
       </li>
       <li Class="CompProperties_Breakdownable"/>
       <li Class="CompProperties_Styleable"/>
