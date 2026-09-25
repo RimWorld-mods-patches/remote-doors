@@ -35,7 +35,23 @@ namespace RemoteDoors
                 Log.Error($"[RemoteDoors] {def.defName} uses Building_RemoteDoor but has no CompPowerTrader, so it can never be commanded open.");
             }
 
-            wasPowered = Powered;
+            // A loaded door keeps the wasPowered it was saved with. Resampling it here would lose
+            // a power drop that happened between the last refresh and the save, so the door
+            // would coast shut later than it does in the game that saved it - a desync in
+            // Multiplayer, where joiners load the host's save while the host keeps running.
+            if (!respawningAfterLoad)
+            {
+                wasPowered = Powered;
+            }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+
+            // Saves from before this field was scribed load it as false, the unpowered default.
+            // A door loaded while powered just renews its hold at the next refresh as usual.
+            Scribe_Values.Look(ref wasPowered, "wasPowered", defaultValue: false);
         }
 
         protected override void Tick()
