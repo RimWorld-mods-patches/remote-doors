@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Vanilla's TrapIEDBase supplies the trap behaviour, stats, placement rules and the
+       IEDs research prerequisite; children append Electricity to that list. -->
+  <ThingDef Name="RemoteIEDBase" ParentName="TrapIEDBase" Abstract="True">
+    <thingClass>RemoteDoors.Building_RemoteIED</thingClass>
+    <researchPrerequisites>
+      <li>Electricity</li>
+    </researchPrerequisites>
+  </ThingDef>
+
+  <ThingDef ParentName="RemoteIEDBase">
+    <defName>RemoteIED_HighExplosive</defName>
+    <label>remote IED trap</label>
+    <description>A pair of high-explosive shells connected to a trigger which detonates on touch or bullet impact. While it receives electricity the touch trigger is disabled and anyone can walk over it safely; cut the power and it is armed. Bullets can still set it off either way.\n\nRun a field of them off their own conduit branch behind a power switch to arm or disarm them all at once. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/IEDHighExplosive</texPath>
+    </graphicData>
+    <uiOrder>44</uiOrder>
+    <costList>
+      <Shell_HighExplosive>2</Shell_HighExplosive>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>3.9</explosiveRadius>
+        <explosiveDamageType>Bomb</explosiveDamageType>
+        <startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+        <preExplosionSpawnSingleThingDef>Filth_BlastMark</preExplosionSpawnSingleThingDef>
+        <wickTicks>15</wickTicks>
+        <startWickOnDamageTaken>
+          <li>Bullet</li>
+          <li>Arrow</li>
+          <li>ArrowHighVelocity</li>
+        </startWickOnDamageTaken>
+      </li>
+      <li Class="CompProperties_Power">
+        <!-- Must stay a plain CompPowerTrader: ThingDef.ConnectToPower matches it by exact
+             type. Unpowered is the armed resting state, not a fault, so no overlay. -->
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>10</basePowerConsumption>
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
+      </li>
+    </comps>
+    <specialDisplayRadius>3.9</specialDisplayRadius>
+  </ThingDef>
+
+  <ThingDef ParentName="RemoteIEDBase">
+    <defName>RemoteIED_Incendiary</defName>
+    <label>remote IED incendiary trap</label>
+    <description>A pair of incendiary shells connected to a trigger which detonates on touch or bullet impact. While it receives electricity the touch trigger is disabled and anyone can walk over it safely; cut the power and it is armed. Bullets can still set it off either way.\n\nRun a field of them off their own conduit branch behind a power switch to arm or disarm them all at once. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/IEDIncendiary</texPath>
+    </graphicData>
+    <uiOrder>45</uiOrder>
+    <costList>
+      <Shell_Incendiary>2</Shell_Incendiary>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>3.9</explosiveRadius>
+        <explosiveDamageType>Flame</explosiveDamageType>
+        <startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+        <wickTicks>15</wickTicks>
+        <startWickOnDamageTaken>
+          <li>Bullet</li>
+          <li>Arrow</li>
+          <li>ArrowHighVelocity</li>
+        </startWickOnDamageTaken>
+      </li>
+      <li Class="CompProperties_Power">
+        <!-- Must stay a plain CompPowerTrader: ThingDef.ConnectToPower matches it by exact
+             type. Unpowered is the armed resting state, not a fault, so no overlay. -->
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>10</basePowerConsumption>
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
+      </li>
+    </comps>
+    <specialDisplayRadius>3.9</specialDisplayRadius>
+  </ThingDef>
+
+  <ThingDef ParentName="RemoteIEDBase">
+    <defName>RemoteIED_EMP</defName>
+    <label>remote IED EMP trap</label>
+    <description>A pair of EMP shells connected to a trigger which detonates on touch or bullet impact. The explosion can paralyze mechanoids for a few seconds. While it receives electricity the touch trigger is disabled and anyone can walk over it safely; cut the power and it is armed. Bullets can still set it off either way.\n\nRun a field of them off their own conduit branch behind a power switch to arm or disarm them all at once. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/IEDEMP</texPath>
+    </graphicData>
+    <uiOrder>46</uiOrder>
+    <costList>
+      <Shell_EMP>2</Shell_EMP>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>10.9</explosiveRadius>
+        <explosiveDamageType>EMP</explosiveDamageType>
+        <startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+        <wickTicks>15</wickTicks>
+        <startWickOnDamageTaken>
+          <li>Bullet</li>
+          <li>Arrow</li>
+          <li>ArrowHighVelocity</li>
+        </startWickOnDamageTaken>
+      </li>
+      <li Class="CompProperties_Power">
+        <!-- Must stay a plain CompPowerTrader: ThingDef.ConnectToPower matches it by exact
+             type. Unpowered is the armed resting state, not a fault, so no overlay. -->
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>10</basePowerConsumption>
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
+      </li>
+    </comps>
+    <specialDisplayRadius>10.9</specialDisplayRadius>
+  </ThingDef>
+
+  <ThingDef ParentName="RemoteIEDBase">
+    <defName>RemoteIED_Smoke</defName>
+    <label>remote IED smoke trap</label>
+    <description>A pair of smoke shells connected to a trigger which detonates on touch or bullet impact. While it receives electricity the touch trigger is disabled and anyone can walk over it safely; cut the power and it is armed. Bullets can still set it off either way.\n\nRun a field of them off their own conduit branch behind a power switch to arm or disarm them all at once. Since it is hidden in the surrounding terrain, it cannot be placed adjacent to other traps. Animals can sense these when calm.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/IEDSmoke</texPath>
+    </graphicData>
+    <uiOrder>47</uiOrder>
+    <costList>
+      <Shell_Smoke>2</Shell_Smoke>
+      <ComponentIndustrial>1</ComponentIndustrial>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Explosive">
+        <explosiveRadius>8.6</explosiveRadius>
+        <explosiveDamageType>Smoke</explosiveDamageType>
+        <startWickHitPointsPercent>0.2</startWickHitPointsPercent>
+        <postExplosionGasType>BlindSmoke</postExplosionGasType>
+        <wickTicks>15</wickTicks>
+        <startWickOnDamageTaken>
+          <li>Bullet</li>
+          <li>Arrow</li>
+          <li>ArrowHighVelocity</li>
+        </startWickOnDamageTaken>
+      </li>
+      <li Class="CompProperties_Power">
+        <!-- Must stay a plain CompPowerTrader: ThingDef.ConnectToPower matches it by exact
+             type. Unpowered is the armed resting state, not a fault, so no overlay. -->
+        <compClass>CompPowerTrader</compClass>
+        <basePowerConsumption>10</basePowerConsumption>
+        <showPowerNeededIfOff>false</showPowerNeededIfOff>
+      </li>
+    </comps>
+    <specialDisplayRadius>8.6</specialDisplayRadius>
+  </ThingDef>
+
+</Defs>

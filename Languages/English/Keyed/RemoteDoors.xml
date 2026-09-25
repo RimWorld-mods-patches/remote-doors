@@ -2,4 +2,6 @@
 <LanguageData>
   <RemoteDoors_HeldOpenPowered>Held open (powered)</RemoteDoors_HeldOpenPowered>
   <RemoteDoors_UnpoweredManual>Unpowered - manual operation</RemoteDoors_UnpoweredManual>
+  <RemoteDoors_IEDSafePowered>Safe (powered) - touch trigger disabled</RemoteDoors_IEDSafePowered>
+  <RemoteDoors_IEDArmed>Armed - no power</RemoteDoors_IEDArmed>
 </LanguageData>

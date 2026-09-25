@@ -3,7 +3,7 @@
   <packageId>romangr.remotedoors</packageId>
   <name>Remote Doors</name>
   <author>roman_gr</author>
-  <modVersion>1.0.1</modVersion>
+  <modVersion>1.1.0</modVersion>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
@@ -13,5 +13,7 @@ Wire a set of remote doors to their own conduit branch behind a power switch and
 
 With no power the remote door behaves exactly like an ordinary door - colonists can still open it by hand, just more slowly. Power loss, a solar flare or a breakdown all leave it closed rather than stuck open.
 
-Unlocked by the autodoor research.</description>
+Unlocked by the autodoor research.
+
+Also adds remote IED traps - high-explosive, incendiary, EMP and smoke. While powered their touch trigger is disabled and anyone can walk over them; cut the power and they are armed. Bullets can still set them off either way. Unlocked by the IEDs and electricity research.</description>
 </ModMetaData>
