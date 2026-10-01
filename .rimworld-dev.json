@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "mod_name": "Remote Doors",
+  "package_id": "romangr.remotedoors",
+  "project": "Source/RemoteDoors/RemoteDoors.csproj",
+  "sdk_image": "mcr.microsoft.com/dotnet/sdk:8.0",
+  "test_projects": [],
+  "output_dlls": ["RemoteDoors.dll"],
+  "baseline_save": "RemoteDoors-Disposable",
+  "runtime_notes": ".rimworld-dev.md",
+  "baseline_mods": ["brrainz.harmony", "ludeon.rimworld", "RedEyeDev.RIMAPI", "roman.rimapi.debugactions", "romangr.remotedoors"]
+}
