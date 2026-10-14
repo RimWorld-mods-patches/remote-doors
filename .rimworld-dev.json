@@ -8,5 +8,5 @@
   "output_dlls": ["RemoteDoors.dll"],
   "baseline_save": "RemoteDoors-Disposable",
   "runtime_notes": ".rimworld-dev.md",
-  "baseline_mods": ["brrainz.harmony", "ludeon.rimworld", "RedEyeDev.RIMAPI", "roman.rimapi.debugactions", "romangr.remotedoors"]
+  "baseline_mods": ["brrainz.harmony", "ludeon.rimworld", "RedEyeDev.RIMAPI", "romangr.rimapi.debugactions", "romangr.remotedoors"]
 }
